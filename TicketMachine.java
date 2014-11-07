@@ -109,7 +109,15 @@ public class TicketMachine
     return amountLeftToPay;
    }
    
-   
-   
+   /**
+    * Método que simula el vaciado de todas las modenas de la maquina.
+    */
+   public int emptyMachine()
+   {
+       int amountTotalMachine = balance+total;
+       balance=0;
+       total=0;
+       return amountTotalMachine;
+   }
    
 }
