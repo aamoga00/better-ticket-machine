@@ -99,4 +99,17 @@ public class TicketMachine
         balance = 0;
         return amountToRefund;
     }
+   /**
+    * Devuelve el dinero que hace falta meter para poder impirmir un ticket.
+    */
+   public int getAmountLeftToPay()
+   {
+    int amountLeftToPay;
+    amountLeftToPay = price- balance;
+    return amountLeftToPay;
+   }
+   
+   
+   
+   
 }
