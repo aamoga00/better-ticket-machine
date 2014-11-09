@@ -13,10 +13,12 @@ public class TicketMachine
 {
     // The price of a ticket from this machine.
     private int price;
+    //The price with discount from this machine.
+    private double priceDiscount;
     // The amount of money entered by a customer so far.
-    private int balance;
+    private double balance;
     // The total amount of money collected by this machine.
-    private int total;
+    private double total;
 
     /**
      * Create a machine that issues tickets of the given price.
@@ -26,6 +28,7 @@ public class TicketMachine
         price = cost;
         balance = 0;
         total = 0;
+        priceDiscount = price*0.9;
     }
 
     /**
@@ -33,14 +36,14 @@ public class TicketMachine
      */
     public int getPrice()
     {
-        return price;
+       return price;
     }
 
     /**
      * Return The amount of money already inserted for the
      * next ticket.
      */
-    public int getBalance()
+    public double getBalance()
     {
         return balance;
     }
@@ -83,8 +86,40 @@ public class TicketMachine
         }
         else 
         {
-            int amountLeftToPay = price-balance;
+            double amountLeftToPay = price-balance;
             System.out.println("You must insert at least: " + amountLeftToPay
+                                + " more cents.");
+                    
+        }
+    }
+    /**
+     * Print a ticket with discount if enough money has been inserted, and
+     * reduce the current balance by the ticket price. Print
+     * an error message if more money is required.
+     */
+    public void printTicketDiscount()
+    {
+        if(balance >= priceDiscount) 
+
+        {
+            // Simulate the printing of a ticket.
+            System.out.println("##################");
+            System.out.println("# The BlueJ Line");
+            System.out.println("# Ticket");
+            System.out.println("# " + priceDiscount + " cents.");
+            System.out.println("##################");
+            System.out.println();
+
+            // Update the total collected with the price.
+            total = total + priceDiscount;
+            // Reduce the balance by the prince.
+            balance = balance - priceDiscount;
+        }
+        else 
+        {
+          
+          double amountLeftToPay = priceDiscount-balance;
+          System.out.println("You must insert at least: " + amountLeftToPay
                                 + " more cents.");
                     
         }
@@ -94,9 +129,9 @@ public class TicketMachine
      * Return the money in the balance.
      * The balance is cleared.
      */
-    public int refundBalance()
+    public double refundBalance()
     {
-        int amountToRefund;
+        double amountToRefund;
         amountToRefund = balance;
         balance = 0;
         return amountToRefund;
@@ -104,9 +139,9 @@ public class TicketMachine
    /**
     * Devuelve el dinero que hace falta meter para poder impirmir un ticket.
     */
-   public int getAmountLeftToPay()
+   public double getAmountLeftToPay()
    {
-    int amountLeftToPay;
+    double amountLeftToPay;
     amountLeftToPay = price- balance;
     return amountLeftToPay;
    }
@@ -114,9 +149,9 @@ public class TicketMachine
    /**
     * Método que simula el vaciado de todas las modenas de la maquina.
     */
-   public int emptyMachine()
+   public double emptyMachine()
    {
-       int amountTotalMachine = balance+total;
+       double amountTotalMachine = balance+total;
        balance=0;
        total=0;
        return amountTotalMachine;
